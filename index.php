@@ -75,7 +75,9 @@ class AppGuest extends Application
 
         return $this->render('index',
             array(
-                'content' => $form->render()
+                'content' =>
+                    $this->render('messages_list', array('messages' => $guest->getMessagesApprove())).
+                    $form->render()
             )
         );
 

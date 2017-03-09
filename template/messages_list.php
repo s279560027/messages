@@ -11,10 +11,10 @@ if (!empty($messages)): ?>
         </tr>
         <?php foreach ($messages as $message): ?>
             <tr>
-                <td><?= $message['name'] ?></td>
-                <td><?= $message['email'] ?></td>
-                <td><?= $message['header'] ?></td>
-                <td><?= $message['text'] ?></td>
+                <td><?= htmlspecialchars($message['name']); ?></td>
+                <td><?= htmlspecialchars($message['email']); ?></td>
+                <td><?= htmlspecialchars($message['header']); ?></td>
+                <td><?= htmlspecialchars(mb_strimwidth($message['text'], 0, 20, '...','utf-8')); ?></td>
                 <td>
                     <a class="btn btn-success" href="/view?message_id=<?= $message['id'] ?>">Просмотреть</a>
                 </td>

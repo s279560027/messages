@@ -50,6 +50,12 @@ class Guest
         return $stmt->fetchAll();
     }
 
+    public function getMessagesApprove()
+    {
+        $stmt = AppGuest::$db->query("SELECT * FROM messages WHERE approve = 1");
+        return $stmt->fetchAll();
+    }
+
     public function approve($message_id, $approve) {
         $stmt = AppGuest::$db->prepare("UPDATE messages SET approve = ? WHERE id = ?");
         $stmt->execute(array($approve, $message_id));
