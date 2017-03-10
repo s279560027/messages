@@ -22,20 +22,21 @@ class Captcha extends Control
         $this->type = 'captcha';
 
         parent::__construct($name, $params);
-        if(!isset($_SESSION['captcha'])) {
+        if (!isset($_SESSION['captcha'])) {
             $_SESSION['captcha'] = array();
         }
 
         $this->captchaParams = array_replace(array(
             'code' => ''
         ), $_SESSION['captcha']);
-        if(empty($this->captchaParams['code'])) {
-            $this->captchaParams['code'] = rand(0,9).rand(0,9).rand(0,9).rand(0,9);
+        if (empty($this->captchaParams['code'])) {
+            $this->captchaParams['code'] = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
             $_SESSION['captcha'] = array_replace($_SESSION['captcha'], $this->captchaParams);
         }
     }
 
-    public function render() {
+    public function render()
+    {
         $output = parent::render();
 
         $output .= '<img src="/captcha" />';
@@ -43,14 +44,15 @@ class Captcha extends Control
     }
 
 
-    public static function renderImage() {
+    public static function renderImage()
+    {
 
         header('Content-Type: image/png');
         $im = imagecreate(175, 30);
         $bgColor = imagecolorallocate($im, 0, 0, 0);
-        if(!empty($_SESSION['captcha']['code'])) {
+        if (!empty($_SESSION['captcha']['code'])) {
             $textColor = imagecolorallocate($im, 255, 255, 255);
-            imagestring($im, 5, rand(5, 100), rand(5, 10), $_SESSION['captcha']['code'] , $textColor);
+            imagestring($im, 5, rand(5, 100), rand(5, 10), $_SESSION['captcha']['code'], $textColor);
         }
         imagepng($im);
         imagedestroy($im);
@@ -58,8 +60,9 @@ class Captcha extends Control
 
     }
 
-    public function validate() {
-        if(parent::validate() && ((string)$this->captchaParams['code'] !== (string)$this->getValue())) {
+    public function validate()
+    {
+        if (parent::validate() && ((string)$this->captchaParams['code'] !== (string)$this->getValue())) {
             $this->setError('Неверные цифры');
             return false;
         }

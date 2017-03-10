@@ -20,4 +20,13 @@ class Email extends Control
         parent::__construct($name, $params);
         $this->type = 'email';
     }
+
+    public function validate()
+    {
+        if (parent::validate() && !preg_match('#.+@.+#', $this->value)) {
+            $this->setError('Неверный email');
+            return false;
+        }
+        return true;
+    }
 }

@@ -21,7 +21,8 @@ abstract class Control
 
     /**
      * Control constructor.
-     * @param $value
+     * @param $name
+     * @param $params
      */
     public function __construct($name, $params)
     {
@@ -69,7 +70,7 @@ abstract class Control
 
         $attributes = $this->getAttributesString();
         $label = '';
-        if($this->label) {
+        if ($this->label) {
             $label = htmlspecialchars($this->label);
             $label = <<<LABEL
             <label>{$label}</label>
@@ -77,7 +78,7 @@ LABEL;
         }
         $error = '';
 
-        if($this->error) {
+        if ($this->error) {
             $errorText = htmlspecialchars($this->error);
             $error = <<<ERROR
             <div class="error">{$errorText}</div>
@@ -93,7 +94,7 @@ INPUT;
 
     public function validate()
     {
-        if($this->required && strlen($this->getValue()) < 1) {
+        if ($this->required && strlen($this->getValue()) < 1) {
             $this->setError('Обязательно для заполнения');
             return false;
         }
@@ -150,11 +151,6 @@ INPUT;
     {
         $this->value = '';
     }
-
-
-
-
-
 
 
 }
