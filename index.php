@@ -52,7 +52,7 @@ class AppGuest extends Application
         );
         $form = new Form($formAttrs);
 
-        if(!empty($_SESSION['message'])) {
+        if (!empty($_SESSION['message'])) {
             $form
                 ->addControl('name', Label::class, array('value' => $_SESSION['message']));
             unset($_SESSION['message']);
@@ -70,8 +70,8 @@ class AppGuest extends Application
 
         $form->execute();
         if ($form->isSubmit()) {
-            if($form->isValid()) {
-                if($guest->addMessage($form->getValues())) {
+            if ($form->isValid()) {
+                if ($guest->addMessage($form->getValues())) {
                     $form->clean();
                     $_SESSION['message'] = 'Сообщение добавлено';
                     $this->redirect('');
@@ -82,12 +82,10 @@ class AppGuest extends Application
         }
 
 
-
-
         return $this->render('index',
             array(
                 'content' =>
-                    $this->render('messages_list', array('messages' => $guest->getMessagesApprove())).
+                    $this->render('messages_list', array('messages' => $guest->getMessagesApprove())) .
                     $form->render()
             )
         );
@@ -144,8 +142,6 @@ class AppGuest extends Application
             )
         );
     }
-
-
 
 
 }

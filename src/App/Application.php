@@ -66,25 +66,29 @@ class Application
     }
 
 
-    protected function render($templateName, $variables) {
+    protected function render($templateName, $variables)
+    {
         $template = new Template($variables);
         $template->setTemplate($templateName);
         return $template->render();
     }
 
-    protected function getRequestVar($name, $default = '') {
-        if(isset($_REQUEST[$name])) {
+    protected function getRequestVar($name, $default = '')
+    {
+        if (isset($_REQUEST[$name])) {
             return $_REQUEST[$name];
         }
         return $default;
     }
 
-    protected function getRequestVarInt($name, $default = 0) {
+    protected function getRequestVarInt($name, $default = 0)
+    {
         return intval($this->getRequestVar($name, $default));
     }
 
-    protected function redirect($path) {
-        header('Location: /'.$path);
+    protected function redirect($path)
+    {
+        header('Location: /' . $path);
         exit();
     }
 

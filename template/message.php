@@ -6,13 +6,13 @@
  * Time: 22:07
  */
 ?>
-<h3>Просмотр сообщения #<?=htmlspecialchars($variables['message']['id']); ?></h3>
+<h3>Просмотр сообщения #<?= htmlspecialchars($variables['message']['id']); ?></h3>
 <h4>Имя:</h4>
-<?=htmlspecialchars($variables['message']['name']); ?>
+<?= htmlspecialchars($variables['message']['name']); ?>
 <h4>Заголовок:</h4>
-<?=htmlspecialchars($variables['message']['header']); ?>
+<?= htmlspecialchars($variables['message']['header']); ?>
 <h4>Email:</h4>
-<?=htmlspecialchars($variables['message']['email']); ?>
+<?= htmlspecialchars($variables['message']['email']); ?>
 <h4>Текст сообщения:</h4>
-<?=htmlspecialchars($variables['message']['text']); ?>
+<?= htmlspecialchars($variables['message']['text']); ?>
 

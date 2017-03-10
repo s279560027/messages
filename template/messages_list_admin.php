@@ -14,7 +14,7 @@ if (!empty($messages)): ?>
                 <td><?= htmlspecialchars($message['name']); ?></td>
                 <td><?= htmlspecialchars($message['email']); ?></td>
                 <td><?= htmlspecialchars($message['header']); ?></td>
-                <td><?= htmlspecialchars(mb_strimwidth($message['text'], 0, 20, '...','utf-8')); ?></td>
+                <td><?= htmlspecialchars(mb_strimwidth($message['text'], 0, 20, '...', 'utf-8')); ?></td>
                 <td>
 
                     <?php if (empty($message['approve'])): ?>

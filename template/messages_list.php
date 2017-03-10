@@ -14,7 +14,7 @@ if (!empty($messages)): ?>
                 <td><?= htmlspecialchars($message['name']); ?></td>
                 <td><?= htmlspecialchars($message['email']); ?></td>
                 <td><?= htmlspecialchars($message['header']); ?></td>
-                <td><?= htmlspecialchars(mb_strimwidth($message['text'], 0, 20, '...','utf-8')); ?></td>
+                <td><?= htmlspecialchars(mb_strimwidth($message['text'], 0, 20, '...', 'utf-8')); ?></td>
                 <td>
                     <a class="btn btn-success" href="/view?message_id=<?= $message['id'] ?>">Просмотреть</a>
                 </td>

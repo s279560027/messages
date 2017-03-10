@@ -27,7 +27,7 @@ class Textarea extends Control
 
         $attributes = $this->getAttributesString();
         $label = '';
-        if($this->label) {
+        if ($this->label) {
             $label = htmlspecialchars($this->label);
             $label = <<<LABEL
             <label>{$label}</label>
@@ -35,7 +35,7 @@ LABEL;
         }
         $error = '';
 
-        if($this->error) {
+        if ($this->error) {
             $errorText = htmlspecialchars($this->error);
             $error = <<<ERROR
             <div class="error">{$errorText}</div>

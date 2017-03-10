@@ -19,9 +19,10 @@ class Template
     {
         $this->variables = $variables;
     }
+
     public function setTemplate($name)
     {
-        if(file_exists($this->templateDir.DIRECTORY_SEPARATOR.$name.'.php')) {
+        if (file_exists($this->templateDir . DIRECTORY_SEPARATOR . $name . '.php')) {
             $this->template = $name;
         }
     }
@@ -29,7 +30,7 @@ class Template
     public function render()
     {
         $variables = $this->variables;
-        require_once $this->templateDir.DIRECTORY_SEPARATOR.$this->template.'.php';
+        require_once $this->templateDir . DIRECTORY_SEPARATOR . $this->template . '.php';
         return ob_get_clean();
     }
 }

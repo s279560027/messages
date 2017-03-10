@@ -30,14 +30,14 @@ class Guest
         $insertParams['approve'] = 0;
 
         $columns = array_keys($insertParams);
-        $columns = '`'.implode('`,`', $columns).'`';
+        $columns = '`' . implode('`,`', $columns) . '`';
         $placeholders = trim(str_repeat('?, ', count($insertParams)), ', ');
 
 
         $stmt = AppGuest::$db->prepare("INSERT INTO messages({$columns}) VALUES({$placeholders})");
         $stmt->execute(array_values($insertParams));
 
-        if(AppGuest::$db->lastInsertId() > 0) {
+        if (AppGuest::$db->lastInsertId() > 0) {
             return true;
         }
 
@@ -56,12 +56,14 @@ class Guest
         return $stmt->fetchAll();
     }
 
-    public function approve($message_id, $approve) {
+    public function approve($message_id, $approve)
+    {
         $stmt = AppGuest::$db->prepare("UPDATE messages SET approve = ? WHERE id = ?");
         $stmt->execute(array($approve, $message_id));
     }
 
-    public function delete($message_id) {
+    public function delete($message_id)
+    {
         $stmt = AppGuest::$db->prepare("DELETE FROM messages WHERE id = ?");
         $stmt->execute(array($message_id));
     }
