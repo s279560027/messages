@@ -30,4 +30,11 @@ if (!empty($messages)): ?>
 
         <?php endforeach; ?>
     </table>
+<?php else: ?>
+    <table class="table">
+        <tr>
+            <td>Сообщений нет</td>
+        </tr>
+    </table>
+
 <?php endif; ?>
