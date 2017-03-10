@@ -14,6 +14,7 @@ use App\Forms\Email;
 use App\Forms\Textarea;
 use App\Forms\Captcha;
 use App\Forms\Submit;
+use App\Forms\Label;
 
 
 require_once 'Autoloader.php';
@@ -50,6 +51,13 @@ class AppGuest extends Application
             'name' => 'guest'
         );
         $form = new Form($formAttrs);
+
+        if(!empty($_SESSION['message'])) {
+            $form
+                ->addControl('name', Label::class, array('value' => $_SESSION['message']));
+            unset($_SESSION['message']);
+        }
+
         $form
             ->addControl('name', TextInput::class, array('label' => 'Имя', 'required' => true))
             ->addControl('email', Email::class, array('label' => 'Email', 'required' => true))
@@ -65,12 +73,15 @@ class AppGuest extends Application
             if($form->isValid()) {
                 if($guest->addMessage($form->getValues())) {
                     $form->clean();
+                    $_SESSION['message'] = 'Сообщение добавлено';
                     $this->redirect('');
                 }
 
             }
 
         }
+
+
 
 
         return $this->render('index',
