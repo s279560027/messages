@@ -28,10 +28,6 @@ class AppGuest extends Application
 
     static public $db;
 
-    static public function start()
-    {
-        new self();
-    }
 
     protected function init()
     {

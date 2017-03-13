@@ -9,7 +9,7 @@
 namespace App;
 
 
-class Application
+abstract class Application
 {
     private static $instance = null;
     private $responce = null;
@@ -18,17 +18,25 @@ class Application
     {
     }
 
+    private function __wakeup() {
 
-    public function __construct()
+    }
+
+    private function __construct()
     {
+    }
+
+    static public function start()
+    {
+
         if (null === self::$instance) {
-            self::$instance = $this;
+            self::$instance = new static();
             try {
                 self::$instance->init();
 
                 self::$instance->doAction();
             } catch (\Exception $e) {
-                $this->responce = $this->render(
+                self::$instance->responce = self::$instance->render(
                     'error',
                     array(
                         'error' => $e->getMessage(),
@@ -39,7 +47,7 @@ class Application
         }
 
         ob_end_flush();
-        print $this->responce;
+        print self::$instance->responce;
     }
 
     protected function init()
@@ -61,7 +69,7 @@ class Application
         if (!method_exists(get_called_class(), $method)) {
             $method = 'actionDefault';
         }
-        $this->responce = call_user_func(array(get_called_class(), $method));
+        $this->responce = call_user_func(array($this, $method));
 
     }
 
