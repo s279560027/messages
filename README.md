@@ -5,7 +5,7 @@
 
 - создать базу из дампа sql.sql
 
-- в файле index.php пропивать настройки БД
+- в файле index.php прописать настройки БД
 
     const DB_HOST = 'localhost';
     
